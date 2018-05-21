@@ -1,13 +1,13 @@
 import axios from "axios";
+import { URL } from "./../constants";
 
-const url = "http://misr-utility-misr-utility.a3c1.starter-us-west-1.openshiftapps.com/note";
 export function fetchNote(pNoteId) {
   pNoteId = pNoteId || "";
   return function(dispatch) {
     dispatch({ type: "FETCH_NOTE" });
 
     axios
-      .get(url + "/" + pNoteId)
+      .get(URL + "/" + pNoteId)
       .then(response => {
         dispatch({ type: "FETCH_NOTE_FULFILLED", payload: response.data });
       })
@@ -28,7 +28,7 @@ export function updateNote(id, pContent) {
     let params = new URLSearchParams();
     params.append("content", pContent);
     axios
-      .post(url + "/" + id, params)
+      .post(URL + "/" + id, params)
       .then(res => {
         dispatch({ type: "UPDATE_NOTE_FULFILLED", payload: res.data });
       })
