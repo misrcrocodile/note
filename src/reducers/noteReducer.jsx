@@ -8,6 +8,7 @@ import {
   UPDATE_NOTE_FULFILLED,
   UPDATE_NOTE_REJECTED
 } from "./../constants";
+
 export default function reducer(
   state = {
     note: defaultObj,
