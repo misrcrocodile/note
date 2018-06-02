@@ -3,7 +3,7 @@ import { Row, Grid, FormControl } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import { base_path, FETCH_NOTE_FULFILLED } from "./../constants";
-import { fetchNote, changeNoteContent } from "./../actions/noteActions";
+import { fetchNote, changeNoteContent, updateNote } from "./../actions/noteActions";
 import Footer from "./footer.component";
 
 import "./App.css";
@@ -15,6 +15,13 @@ class App extends Component {
     if (paramId === undefined || paramId === null) paramId = "";
     if(stateId === "" || paramId !== stateId )
       this.props.dispatch(fetchNote(paramId));
+
+    setInterval(()=> {
+      if(this.props.state.note.contentChanged) {
+        let note = this.props.state.note.note;
+        this.props.dispatch(updateNote(note.id, note.content));
+      }
+    }, 5000);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -52,6 +59,9 @@ class App extends Component {
             value={this.props.state.note.note.content}
             onChange={this.handleChange.bind(this)}
           />
+          <div className={"message-box" + (this.props.state.note.contentChanged ? '' : ' hidden')}>
+            Note is saving
+          </div>
         </Row>
         <Footer />
       </Grid>

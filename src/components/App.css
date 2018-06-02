@@ -39,12 +39,31 @@
 #main-content {
   margin-left: 5px;
   margin-right: 5px;
+  position: relative;
 }
 .form-control:focus {
   box-shadow: none;
 }
 
+.message-box {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background: #f0f0f0;
+  padding: 2px 15px;
+  border-radius: 0 4px 0 4px;
+  color: #a0a0a0;
+  animation: blinker 1.5s linear infinite;
+}
 
+@keyframes blinker {
+  50% {
+    opacity: 0.1;
+  }
+}
+.social-logo {
+  margin-left: 5px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

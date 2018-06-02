@@ -1,34 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Col, Row } from "react-bootstrap";
-
-import { updateNote } from "./../actions/noteActions";
+import { Col, Row } from "react-bootstrap";
 
 import facebookLogo from "./../imgs/facebook.png";
 import twitterLogo from "./../imgs/twitter.png";
 import googleLogo from "./../imgs/google.png";
 
 class Footer extends Component {
-  updateData() {
-    let note = this.props.state.note.note;
-    let noteId = note.id;
-    let content = note.content;
-    this.props.dispatch(updateNote(noteId, content));
-  }
   render() {
     let noteId = this.props.state.note.note.id;
     return (
       <div id="footer">
         <Row>
           <Col xs={6} className="text-left">
-            <span>#{noteId}</span>
-            <Button
-              type="submit"
-              className="btn"
-              onClick={this.updateData.bind(this)}
-            >
-              update
-            </Button>
+            <a href={null}>#{noteId}</a>
           </Col>
           <Col xs={6} className="text-right">
             <a
@@ -36,10 +21,10 @@ class Footer extends Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={facebookLogo} alt="Facebook" height="32" width="32" />
+              <img className="social-logo" src={facebookLogo} alt="Facebook" height="32" width="32" />
             </a>
-            <img src={twitterLogo} alt="Twitter" height="32" width="32" />
-            <img src={googleLogo} alt="Google+" height="32" width="32" />
+            <img className="social-logo" src={twitterLogo} alt="Twitter" height="32" width="32" />
+            <img className="social-logo" src={googleLogo} alt="Google+" height="32" width="32" />
           </Col>
         </Row>
       </div>

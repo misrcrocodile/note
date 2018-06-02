@@ -74,6 +74,7 @@ export default function reducer(
         status: UPDATE_NOTE_FULFILLED,
         updating: false,
         updated: true,
+        contentChanged: false,
         note: action.payload
       };
     }
