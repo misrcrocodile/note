@@ -29,12 +29,12 @@
 }
 
 #footer {
-  margin:10px;
+  margin: 10px;
   margin-bottom: 30px;
 }
 #exampleText {
   resize: none;
-  min-height:500px;
+  min-height: 500px;
 }
 #main-content {
   margin-left: 5px;
@@ -64,9 +64,26 @@
 .social-logo {
   margin-left: 5px;
 }
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.edit-link {
+  color: red;
 }
 
-
+.edit-textbox {
+  width: 140px;
+}
+.edit-box {
+  display: inline-block;
+}
+.cursor-default {
+  margin-top: 5px;
+  display: inline-block;
+  cursor: default;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
