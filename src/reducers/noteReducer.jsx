@@ -69,6 +69,14 @@ export default function reducer(
       };
     }
     case UPDATE_NOTE_FULFILLED: {
+      if(state.note.content !== action.payload.content)
+        return {
+          ...state,
+          status: CHANGE_NOTE,
+          updating: false,
+          updated: true,
+          contentChanged: true,
+        };
       return {
         ...state,
         status: UPDATE_NOTE_FULFILLED,
