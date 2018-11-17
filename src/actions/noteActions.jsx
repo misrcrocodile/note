@@ -1,39 +1,49 @@
 import axios from "axios";
-import { URL } from "./../constants";
+import { 
+  URL, 
+  FETCH_FULFILLED,
+  FETCH_REJECTED,
+  UPDATE_FULFILLED,
+  UPDATE_REJECTED,
+  CHANGGING,
+  FETCHING,
+  UPDATING
+} from "./../constants";
 
 export function fetchNote(pNoteId) {
   pNoteId = pNoteId || "";
   return function(dispatch) {
-    dispatch({ type: "FETCH_NOTE" });
+    dispatch({ type: FETCHING });
 
     axios
       .get(URL + "/" + pNoteId)
       .then(response => {
-        dispatch({ type: "FETCH_NOTE_FULFILLED", payload: response.data });
+        dispatch({ type: FETCH_FULFILLED, payload: response.data });
       })
       .catch(err => {
-        dispatch({ type: "FETCH_NOTE_REJECTED", payload: err });
+        dispatch({ type: FETCH_REJECTED, payload: err });
       });
   };
 }
 
 export function changeNoteContent(content) {
   return function(dispatch) {
-    dispatch({ type: "CHANGE_NOTE", payload: content });
+    dispatch({ type: CHANGGING , payload: content });
   };
 }
 
-export function updateNote(id, pContent) {
+export function updateNote(id, pContent, status) {
   return function(dispatch) {
+    dispatch({type: UPDATING})
     let params = new URLSearchParams();
     params.append("content", pContent);
     axios
       .post(URL + "/" + id, params)
       .then(res => {
-        dispatch({ type: "UPDATE_NOTE_FULFILLED", payload: res.data });
+        dispatch({ type: UPDATE_FULFILLED, payload: res.data });
       })
       .catch(err => {
-        dispatch({ type: "UPDATE_NOTE_REJECTED", payload: err });
+        dispatch({ type: UPDATE_REJECTED, payload: err });
       });
   };
 }

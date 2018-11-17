@@ -1,97 +1,72 @@
 import {
   defaultObj,
-  FETCH_NOTE,
-  FETCH_NOTE_FULFILLED,
-  FETCH_NOTE_REJECTED,
-  CHANGE_NOTE,
-  UPDATE_NOTE,
-  UPDATE_NOTE_FULFILLED,
-  UPDATE_NOTE_REJECTED
+  FETCHING,
+  FETCH_FULFILLED,
+  FETCH_REJECTED,
+  CHANGGING,
+  UPDATING,
+  UPDATE_FULFILLED,
+  UPDATE_REJECTED
 } from "./../constants";
 
 export default function reducer(
   state = {
     note: defaultObj,
-    fetching: false,
-    fetched: false,
-    updating: false,
-    updated: false,
-    contentChanged: false,
-    status: "READY",
+    status: FETCH_FULFILLED,
     error: null
   },
   action
 ) {
   switch (action.type) {
-    case FETCH_NOTE: {
+    case FETCHING: {
       return {
         ...state,
-        status: FETCH_NOTE,
-        fetching: true,
-        fetched: false
+        status: FETCHING,
       };
     }
-    case FETCH_NOTE_FULFILLED: {
+    case FETCH_FULFILLED: {
       return {
         ...state,
-        status: FETCH_NOTE_FULFILLED,
-        fetching: false,
-        fetched: true,
-        contentChanged: false,
+        status: FETCH_FULFILLED,
         note: action.payload || defaultObj
       };
     }
-    case FETCH_NOTE_REJECTED: {
+    case FETCH_REJECTED: {
       return {
         ...state,
-        status: FETCH_NOTE_REJECTED,
-        fetching: false,
-        fetched: false,
+        status: FETCH_REJECTED,
         error: action.payload
       };
     }
-    case CHANGE_NOTE: {
+    case CHANGGING: {
       let tempNote = state.note;
       tempNote.content = action.payload;
       return {
         ...state,
-        status: CHANGE_NOTE,
-        contentChanged: true,
-        note: tempNote
+        status: CHANGGING,
+        note: tempNote,
       };
     }
-    case UPDATE_NOTE: {
+    case UPDATING: {
       return {
         ...state,
-        status: UPDATE_NOTE,
-        updating: true,
-        updated: false
+        status: UPDATING,
       };
     }
-    case UPDATE_NOTE_FULFILLED: {
-      if(state.note.content !== action.payload.content)
+    case UPDATE_FULFILLED: {
+      if(state.status !== CHANGGING)
         return {
           ...state,
-          status: CHANGE_NOTE,
-          updating: false,
-          updated: true,
-          contentChanged: true,
+          status: UPDATE_FULFILLED,
+          note: action.payload
         };
-      return {
-        ...state,
-        status: UPDATE_NOTE_FULFILLED,
-        updating: false,
-        updated: true,
-        contentChanged: false,
-        note: action.payload
-      };
+      else 
+        return state;
     }
-    case UPDATE_NOTE_REJECTED: {
+    case UPDATE_REJECTED: {
       return {
         ...state,
-        status: UPDATE_NOTE_REJECTED,
-        updating: false,
-        updated: false,
+        status: UPDATE_REJECTED,
         error: action.payload
       };
     }

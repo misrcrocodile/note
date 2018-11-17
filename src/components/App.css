@@ -79,6 +79,11 @@
   display: inline-block;
   cursor: default;
 }
+.cursor-pointer {
+  margin-top: 5px;
+  display: inline-block;
+  cursor:pointer;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

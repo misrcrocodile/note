@@ -66,7 +66,7 @@ class Footer extends Component {
                 href={null}
                 ref="noteIdTag"
                 className={
-                  "cursor-default " + (this.state.isEdit ? "hidden" : "")
+                  "cursor-pointer " + (this.state.isEdit ? "hidden" : "")
                 }
                 onClick={this.copyToClipboard.bind(this)}
               >
@@ -91,7 +91,7 @@ class Footer extends Component {
               <FormControl
                 type="text"
                 id="noteIdForm"
-                value={noteId}
+                defaultValue={this.props.state.note.id}
                 ref="noteIdForm"
                 placeholder="Enter text"
                 onBlur={this.onBlurNoteIdChange.bind(this)}
