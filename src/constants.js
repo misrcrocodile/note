@@ -1,4 +1,4 @@
-export const URL = "https://github.com/misscrocodile/note";
+export const URL = "https://misrutility.herokuapp.com/note";
 
 export const base_path = '/note';
 export const FETCHING = 'FETCHING';
