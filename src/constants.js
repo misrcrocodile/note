@@ -1,4 +1,4 @@
-export const URL = "https://utility-utility-server.7e14.starter-us-west-2.openshiftapps.com/note";
+export const URL = "https://github.com/misscrocodile/note";
 
 export const base_path = '/note';
 export const FETCHING = 'FETCHING';
