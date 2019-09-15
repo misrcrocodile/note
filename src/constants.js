@@ -1,4 +1,4 @@
-export const URL = "https://misrutility.herokuapp.com/note";
+export const URL = "https://misr.xyz/api/note";
 
 export const base_path = '/note';
 export const FETCHING = 'FETCHING';

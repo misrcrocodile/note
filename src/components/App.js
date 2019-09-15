@@ -16,8 +16,11 @@ import "./App.css";
 
 class App extends Component {
   componentWillMount() {
-    let paramId = this.props.location.search.split("?").join("");
+
+    let params = new URLSearchParams(this.props.location.search);
     let stateId = this.props.state.note.note.id;
+    let paramId = params.get('id');
+
     if (paramId === undefined || paramId === null) paramId = "";
     if (stateId === "" || paramId !== stateId)
       this.props.dispatch(fetchNote(paramId));
@@ -40,7 +43,7 @@ class App extends Component {
         (paramId === undefined || paramId === null || paramId === "") &&
         note.id !== ""
       ) {
-        this.props.history.push(base_path + "/?" + note.id);
+        this.props.history.push(base_path + "?id=" + note.id);
       }
     }
   }
