@@ -1,4 +1,4 @@
-export const URL = "https://misr.xyz/api/note";
+export const URL = "http://localhost:3001/api/note";
 
 export const base_path = '/note';
 export const FETCHING = 'FETCHING';

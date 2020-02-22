@@ -13,7 +13,6 @@ render(
     <BrowserRouter>
       <main>
         <Switch>
-
           <Route path={base_path + ":id"} component={App} />
           <Route exact path={base_path} component={App} />
         </Switch>
